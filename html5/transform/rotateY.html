@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cubic</title>
+    <style type="text/css">
+    * { margin: 0; padding: 0; }
+    .box { width: 200px; height: 200px; background: #CCC; transform: perspective(800px); transition: 1s all linear;
+        transform-style: preserve-3d; position: absolute; left: 50%; top: 50%; margin-left: -100px;
+        margin-top: -100px;}
+    .box div { width: 100%; height: 100%; position: absolute; }
+    .box .front { background: red; transform: translateZ(100px); }
+    .box .back { background: purple; transform: translateZ(-100px); }
+    .box .above { background: blue; transform: translateY(-100px) rotateX(90deg) ;}
+    .box .below { background: green; transform: translateY(100px) rotateX(90deg) ;}
+    .box .left { background: gold; transform: translateX(-100px) rotateY(90deg); }
+    .box .right{ background: silver; transform: translateX(100px) rotateY(90deg); }
+    </style>
+    <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', function () {
+        let box = document.querySelector('.box');
+        let count = 0;
+        box.addEventListener('click', function () {
+            let angle = ++count * 90;
+            this.style.transform = `perspective(800px) rotateY(${angle}deg)`;
+        });
+    });
+    </script>
+</head>
+<body>
+    <div class="box">
+        <div class="front"></div>
+        <div class="back"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="above"></div>
+        <div class="below"></div>
+    </div>
+</body>
+</html>

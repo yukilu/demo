@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hexagon</title>
+	<style type="text/css">
+	 @keyframes run {
+		to {transform: perspective(800px) rotateZ(360deg) rotateY(-360deg) rotateX(360deg);}
+	} 
+	.wrap {width: 300px; height: 300px; margin: 100px auto; transform: perspective(800px) rotateZ(0deg) rotateY(0deg) rotateX(0deg);
+		position: relative;/*  background: red; */ transform-style: preserve-3d;  animation: 10s run linear infinite; }
+	.wrap div {width: 50%; height: 100%; position: absolute; left: 50%; top: 0; margin-left: -75px; opacity:1;}
+	.above {transform: translateZ(130px); background: pink;}
+	.below {transform: translateZ(-130px); background: blue;}
+	.aleft {transform: translateX(-75px) rotateY(-60deg); background: orange; transform-origin: left;}
+	.bleft {transform: translateX(-75px) rotateY(60deg); background: green; transform-origin: left;}
+	.aright {transform: translateX(75px) rotateY(60deg); background: purple; transform-origin: right;}
+	.bright {transform: translateX(75px) rotateY(-60deg); background: grey; transform-origin: right;}
+	.wrap .top{width: 50%; height: 86.6%; transform: translateY(150px) rotateX(90deg); background: gold;
+		margin-top: 20px;}
+	.wrap .top1 {transform: translateY(150px) rotateX(90deg) rotateZ(60deg);}
+	.wrap .top2 {transform: translateY(150px) rotateX(90deg) rotateZ(120deg);}
+	.wrap .bottom {width: 50%; height: 86.6%; transform: translateY(-150px) rotateX(90deg); background: silver;
+		margin-top: 20px;}
+	.wrap .bottom1 {transform: translateY(-150px) rotateX(90deg) rotateZ(60deg);}
+	.wrap .bottom2 {transform: translateY(-150px) rotateX(90deg) rotateZ(120deg);}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="above"></div>
+		<div class="below"></div>
+		<div class="aleft"></div>
+		<div class="aright"></div>
+		<div class="bleft"></div>
+		<div class="bright"></div>
+		<div class="top top1"></div>
+		<div class="top"></div>
+		<div class="top top2"></div>
+		<div class="bottom"></div>
+		<div class="bottom bottom1"></div>
+		<div class="bottom bottom2"></div>
+	</div>
+</body>
+</html>

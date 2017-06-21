@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>transform</title>
+	<style type="text/css">
+	div {width: 200px; height: 200px; margin: 50px auto; transition: 2s all ease;}
+	.yx {background: red;}
+	.xy {background: blue;}
+	/*div:hover {transform: translate(200px,100px) rotate(90deg);}*/
+	.yx:hover {transform: perspective(800px) rotateY(-89deg) rotateX(45deg);}
+	.xy:hover {transform: perspective(800px) rotateX(45deg) rotateY(-89deg);}
+	</style>
+</head>
+<body>
+	<div class="yx">rotateY(-89deg) rotateX(45deg)</div>
+	<div class="xy">rotateX(45deg) rotateY(-89deg)</div>
+</body>
+</html>

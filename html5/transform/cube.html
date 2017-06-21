@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>cubic</title>
+	<style type="text/css">
+	@keyframes run {
+		to {transform: perspective(800px) rotateY(-360deg) rotateX(360deg);}
+	}
+	* {margin: 0; padding: 0;}
+	.wrap {width: 250px; height: 250px; position: absolute; left: 500px; top: 200px; transition: 10s all linear;
+		transform: perspective(800px) rotateY(0) rotateX(0); transform-style: preserve-3d;
+		animation: 10s run linear infinite;}
+	.wrap div {width: 100%; height: 100%; position: absolute; opacity:0.6;}
+	.above {transform: translateZ(125px); background: blue;}
+	.below {transform: translateZ(-125px); background: green;}
+	.left {transform: translateX(-125px) rotateY(90deg); background: purple;}
+	.right {transform: translateX(125px) rotateY(90deg); background: orange;}
+	.top {transform: translateY(-125px) rotateX(90deg); background: gold;}
+	.bottom {transform: translateY(125px) rotateX(90deg); background: pink;}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="above"></div>
+		<div class="below"></div>
+		<div class="left"></div>
+		<div class="right"></div>
+		<div class="top"></div>
+		<div class="bottom"></div>
+	</div>
+</body>
+</html>
