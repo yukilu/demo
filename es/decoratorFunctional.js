@@ -30,28 +30,28 @@ function decOperator(decorator) {
     @decorator
     class Dog {}
 
-    console.log(decorator.name, Dog, `Dog.isDog=${Dog.isDog}`, `Dog.isCat=${Dog.isCat}`, `Dog.isObj=${Dog.isObj}`);
+    console.log(Dog, `Dog.isDog=${Dog.isDog}`, `Dog.isCat=${Dog.isCat}`, `Dog.isObj=${Dog.isObj}`);
 }
 
 falseFn.forEach(dec => decOperator(dec));
 trueFn.forEach(dec => decOperator(dec));
 
 /* 上述代码返回值为
- * decorator.name     Dog                Dog.isDog            Dog.isCat            Dog.isObj
+ * Dog                Dog.isDog            Dog.isCat            Dog.isObj
  *
- * decRtnUndefined    class Dog {}       Dog.isDog=true       Dog.isCat=undefined  Dog.isObj=undefined
- * decRtnNumberZero   class Dog {}       Dog.isDog=true       Dog.isCat=undefined  Dog.isObj=undefined
- * decRtnEmptyString  class Dog {}       Dog.isDog=true       Dog.isCat=undefined  Dog.isObj=undefined
- * decRtnFalse        class Dog {}       Dog.isDog=true       Dog.isCat=undefined  Dog.isObj=undefined
- * decRtnNull         class Dog {}       Dog.isDog=true       Dog.isCat=undefined  Dog.isObj=undefined
- * decRtnNaN          class Dog {}       Dog.isDog=true       Dog.isCat=undefined  Dog.isObj=undefined
+ * class Dog {}       Dog.isDog=true       Dog.isCat=undefined  Dog.isObj=undefined
+ * class Dog {}       Dog.isDog=true       Dog.isCat=undefined  Dog.isObj=undefined
+ * class Dog {}       Dog.isDog=true       Dog.isCat=undefined  Dog.isObj=undefined
+ * class Dog {}       Dog.isDog=true       Dog.isCat=undefined  Dog.isObj=undefined
+ * class Dog {}       Dog.isDog=true       Dog.isCat=undefined  Dog.isObj=undefined
+ * class Dog {}       Dog.isDog=true       Dog.isCat=undefined  Dog.isObj=undefined
  * 
- * decRtnNumber       1                  Dog.isDog=undefined  Dog.isCat=undefined  Dog.isObj=undefined
- * decRtnString       string             Dog.isDog=undefined  Dog.isCat=undefined  Dog.isObj=undefined
- * decRtnBoolean      true               Dog.isDog=undefined  Dog.isCat=undefined  Dog.isObj=undefined
- * decRtnObj          { isObj: true }    Dog.isDog=undefined  Dog.isCat=undefined  Dog.isObj=true
- * decRtnClass        class Cat {}       Dog.isDog=undefined  Dog.isCat=true       Dog.isObj=undefined
- * decRtnFn           function cat() {}  Dog.isDog=undefined  Dog.isCat=true       Dog.isObj=undefined
+ * 1                  Dog.isDog=undefined  Dog.isCat=undefined  Dog.isObj=undefined
+ * string             Dog.isDog=undefined  Dog.isCat=undefined  Dog.isObj=undefined
+ * true               Dog.isDog=undefined  Dog.isCat=undefined  Dog.isObj=undefined
+ * { isObj: true }    Dog.isDog=undefined  Dog.isCat=undefined  Dog.isObj=true
+ * class Cat {}       Dog.isDog=undefined  Dog.isCat=true       Dog.isObj=undefined
+ * function cat() {}  Dog.isDog=undefined  Dog.isCat=true       Dog.isObj=undefined
  * 
  * 由以上结果可知，@decorator class A { }
  * 1. 装饰器返回值为假值时(假值有6种: null, 0, NaN, undefined, '', false)，则A的值不会变，代码效果如下
