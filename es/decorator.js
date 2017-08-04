@@ -104,7 +104,7 @@ fnArrTrue.forEach(dec => decOperator(dec));
  * 
  * decRtnNumber       1                  Dog.isDog=undefined  Dog.isCat=undefined  Dog.isObj=undefined
  * decRtnString       string             Dog.isDog=undefined  Dog.isCat=undefined  Dog.isObj=undefined
- * decRtnBoolean      true               Dog.isDog=undefined  Dog.isCat=undefined  Dog.isObj=true
+ * decRtnBoolean      true               Dog.isDog=undefined  Dog.isCat=undefined  Dog.isObj=undefined
  * decRtnObj          { isObj: true }    Dog.isDog=undefined  Dog.isCat=undefined  Dog.isObj=true
  * decRtnClass        class Cat {}       Dog.isDog=undefined  Dog.isCat=true       Dog.isObj=undefined
  * decRtnFn           function Cat() {}  Dog.isDog=undefined  Dog.isCat=true       Dog.isObj=undefined
