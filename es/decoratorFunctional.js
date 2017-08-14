@@ -23,18 +23,16 @@ function decGenerator (rtnVal) {
 const falseVal = [ 0, NaN, null, undefined, '', false ];
 const trueVal = [ 1, 'string', true, obj, cat, Cat ];
 
-const falseFn = falseVal.map(decGenerator);
-const trueFn = trueVal.map(decGenerator);
+const allVal = [...falseVal, ... trueVal];
 
-function decOperator(decorator) {
-    @decorator
+function decOperator(rtnVal) {
+    @decGenerator(rtnVal)
     class Dog {}
 
     console.log(Dog, `Dog.isDog=${Dog.isDog}`, `Dog.isCat=${Dog.isCat}`, `Dog.isObj=${Dog.isObj}`);
 }
 
-falseFn.forEach(dec => decOperator(dec));
-trueFn.forEach(dec => decOperator(dec));
+allVal.forEach(rtnVal => decOperator(rtnVal));
 
 /* 上述代码返回值为
  * Dog                Dog.isDog            Dog.isCat            Dog.isObj
