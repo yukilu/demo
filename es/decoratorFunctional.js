@@ -23,7 +23,7 @@ function decGenerator (rtnVal) {
 const falseVal = [ 0, NaN, null, undefined, '', false ];
 const trueVal = [ 1, 'string', true, obj, cat, Cat ];
 
-const allVal = [...falseVal, ... trueVal];
+const allVal = [...falseVal, ...trueVal];
 
 function decOperator(rtnVal) {
     @decGenerator(rtnVal)
