@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>clock</title>
+	<style type="text/css">
+	#d {width: 400px; height: 400px; background: url(img/clock.jpg); background-size:100%; margin: 50px auto;
+		position: relative;}
+	#d span {position: absolute; left: 50%; top: 50%; transform-origin: bottom;}
+	.h {width: 16px; height: 80px; background: black; margin-left: -8px; margin-top: -80px;
+		border-radius: 8px;}
+	.m {width: 12px; height: 100px; background: black; margin-left: -6px; margin-top: -100px;
+		border-radius: 6px;}
+	.s {width: 8px; height: 130px; background: red; margin-left: -4px; margin-top: -130px;
+		border-radius: 4px;}
+	</style>
+	<script type="text/javascript">
+	window.onload = function () {
+		var d = document.querySelector('#d');
+		var oH = document.querySelector('.h');
+		var oM = document.querySelector('.m');
+		var oS = document.querySelector('.s');
+
+		clock();
+		setInterval(clock, 30);
+
+		function clock() {
+			var date = new Date();
+			var h = date.getHours()%12;
+			var m = date.getMinutes();
+			var s = date.getSeconds();
+			var ms = date.getMilliseconds();
+
+			oH.style.transform = 'rotate(' + (h + m/60)*30 + 'deg)';
+			oM.style.transform = 'rotate(' + (m + s/60)*6 + 'deg)';
+			oS.style.transform = 'rotate(' + (s + ms/1000)*6 + 'deg)';
+		}
+	};
+	</script>
+</head>
+<body>
+	<div id="d">
+		<span class="h"></span>
+		<span class="m"></span>
+		<span class="s"></span>
+	</div>
+</body>
+</html>

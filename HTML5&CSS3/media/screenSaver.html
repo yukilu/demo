@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>screenSaver</title>
+    <style type="text/css">
+    * {margin: 0; padding: 0;}
+    body {overflow: hidden; background: #000;}
+    </style>
+    <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', function () {
+        var c = document.querySelector('canvas'),
+            gd = c.getContext('2d'),
+            LEN = 100,
+            point = 6,
+            width = document.documentElement.clientWidth,
+            height = document.documentElement.clientHeight,
+            aPoint = [],
+            pos = [],
+            color = { r: 255, g: 255, b: 255 },
+            i;
+        c.width = width;
+        c.height = height;
+        for (i = 0; i < point; i++) 
+            aPoint[i] = {
+                x: rand(0, width),
+                y: rand(0, height),
+                speedX: rand(-5, 5),
+                speedY: rand(-5, 5)
+            };
+        setInterval(function () {
+            var arr = [],
+                a,
+                i,
+                j;
+            gd.clearRect(0, 0, width, height);
+            // gd.strokeStyle = '#fff';
+            gd.strokeStyle = 'rgb(' + color.r + ',' + color.g + ',' + color.b + ')';
+            gd.beginPath();
+            gd.moveTo(aPoint[0].x, aPoint[0].y);
+            for (i = 1; i < point; i++) {
+                gd.lineTo(aPoint[i].x, aPoint[i].y);
+            }
+            gd.closePath();
+            gd.stroke();
+
+            for (i = 0; i < pos.length; i++) {
+                a = i / pos.length;
+                gd.beginPath();
+                gd.moveTo(pos[i][0].x, pos[i][0].y);
+                gd.strokeStyle = 'rgba(' + color.r + ',' + color.g + ',' + color.b + ',' + a + ')';
+                // gd.strokeStyle = 'rgba(' + 255 + ',' + 255 + ',' + 255 + ',' + a + ')';
+                for(j = 1; j < pos[i].length; j++)
+                    gd.lineTo(pos[i][j].x, pos[i][j].y);
+                gd.closePath();
+                gd.stroke();
+            }
+
+
+            for (i = 0; i < point; i++) {
+                aPoint[i].x += aPoint[i].speedX;
+                aPoint[i].y += aPoint[i].speedY;
+
+                if (aPoint[i].x < 0) {
+                    aPoint[i].x = 0;
+                    aPoint[i].speedX *= -1;
+                    color = changeColor();
+                } else if (aPoint[i].x > width) {
+                    aPoint[i].x = width;
+                    aPoint[i].speedX *= -1;
+                    //color = changeColor();
+                }
+                if (aPoint[i].y < 0) {
+                    aPoint[i].y = 0;
+                    aPoint[i].speedY *= -1;
+                    //color = changeColor();
+                } else if (aPoint[i].y > height) {
+                    aPoint[i].y = height;
+                    aPoint[i].speedY *= -1;
+                    //color = changeColor();
+                }
+
+                arr[i] = { x: aPoint[i].x, y: aPoint[i].y };
+            }
+            pos.push(arr);
+            if (pos.length > LEN)
+                pos.shift();
+        }, 16);
+    }, false);
+
+    function rand(n, m) {
+        return Math.floor(Math.random()*(m - n + 1) + n);
+    }
+
+    function changeColor() {
+        return {
+            r: rand(0, 255),
+            g: rand(0, 255),
+            b: rand(0, 255)
+        };
+    }
+    </script>
+</head>
+<body>
+<canvas>Sorry, please update your browser</canvas>    
+</body>
+</html>

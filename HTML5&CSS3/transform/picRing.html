@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ring</title>
+	<style type="text/css">
+	* {margin: 0; padding: 0; list-style: none;}
+	body {background: #000;}
+	ul {width: 133px; height: 200px; margin: 200px auto; transform-style: preserve-3d; background: none;
+		transform: perspective(5000px) rotateX(-30deg);
+		/*-webkit-box-reflect: below 10px linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.8));*/}
+	ul li {font-size:0; position: absolute; transition: 1s all ease; border-radius: 10px; overflow: hidden;
+		box-shadow: 0 0 10px #fff; -webkit-box-reflect: below 10px linear-gradient(rgba(0,0,0,0) 40%,rgba(0,0,0,0.4));}
+	</style>
+	<script type="text/javascript">
+	window.onload = function () {
+		var oUl = document.querySelector('ul');
+		var aLi = oUl.children;
+		var angle = 360/aLi.length;
+		for (var i = 0; i < aLi.length; i++)
+			(function (index) {
+				setTimeout(function () {
+					aLi[index].style.transform = 'rotateY(' + angle * index + 'deg) translateZ(350px)';
+				}, (aLi.length - 1 - index) * 500);
+			})(i);
+	};
+	</script>
+</head>
+<body>
+	<ul>
+		<li><img src="img/1.jpg" alt="cat"></li>
+		<li><img src="img/2.jpg" alt="cat"></li>
+		<li><img src="img/3.jpg" alt="cat"></li>
+		<li><img src="img/4.jpg" alt="cat"></li>
+		<li><img src="img/5.jpg" alt="cat"></li>
+		<li><img src="img/6.jpg" alt="cat"></li>
+		<li><img src="img/7.jpg" alt="cat"></li>
+		<li><img src="img/8.jpg" alt="cat"></li>
+		<li><img src="img/9.jpg" alt="cat"></li>
+		<li><img src="img/10.jpg" alt="cat"></li>
+		<li><img src="img/11.jpg" alt="cat"></li>
+	</ul>
+</body>
+</html>

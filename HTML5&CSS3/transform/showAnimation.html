@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>span</title>
+    <style>
+    body {background: #000;}
+    span {font-size:50px; text-shadow:0 0 100px transparent; color:transparent; transition: 1s all ease;}
+    </style>
+    <script>
+    window.onload = function () {
+        var b = document.body;
+        var str = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aliquam ' +
+        'laudantium culpa dolores sequi odio, optio doloribus fugit asperiores sunt soluta animi,' +
+        ' ex, quia consequuntur dolorem dolorum numquam. Dolorum, harum.';
+        for (var i = 0; i < str.length; i++){
+            var oSpan = document.createElement('span');
+            oSpan.innerHTML = str[i];
+            b.appendChild(oSpan);
+        }
+        var aSpan = b.children;
+        var n = 0;
+        var timer = setInterval(function () {
+            aSpan[n++].style.textShadow = '0 0 0 #fff';
+            if (n === aSpan.length)
+                clearInterval(timer);
+        }, 100);
+    };
+    </script>
+</head>
+<body>
+
+</body>
+</html>

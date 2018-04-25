@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>turn</title>
+	<style type="text/css">
+	* {margin: 0; padding: 0;}
+	.box {width: 700px; height: 400px; background: #ccc; margin: 50px auto;}
+	.box div {float: left; transform-style: preserve-3d; transform: perspective(800px) rotateY(0);
+		position: relative;}
+	.box:hover div {transform: }
+	.box span {width: 100%; height: 100%; position: absolute;}
+	</style>
+	<script type="text/javascript">
+	window.onload = function () {
+		var box = document.querySelector('.box');
+		var height = 100, width = 100;
+		var row = box.offsetHeight/height;
+		var column =box.offsetWidth/width;
+		var o = null, aSpan = null;
+		var current = 0;
+		var bClick = false;
+		var aDiv = box.children;
+		var length = 3;
+		for (var i = 0; i < row; i++)
+			for(var j = 0; j < column; j++) {
+				o = document.createElement('div');
+				o.row = i;
+				o.column = j;
+				o.style.width = width + 'px';
+				o.style.height = height + 'px';
+				o.innerHTML = '<span></span><span></span>';
+				box.appendChild(o);
+				aSpan = o.children;
+				aSpan[0].style.backgroundPosition = aSpan[1].style.backgroundPosition =
+				-j*width + 'px -' + i*height + 'px';
+				aSpan[0].style.backgroundImage = 'url(img/a1.jpg)';
+				aSpan[1].style.backgroundImage = 'url(img/a0.jpg)';
+				aSpan[0].style.transform = 'scale(-1,1)';
+				aSpan[1].style.backfaceVisibility = 'hidden';
+			}
+		
+		box.onclick = function () {
+			if (bClick)
+				return;
+			bClick = true;
+			for (var i = 0; i < aDiv.length; i++)
+				(function (index) {
+					setTimeout(function () {
+						aDiv[index].style.transition = '1s all ease';
+						aDiv[index].style.transform = 'perspective(800px) rotateY(-180deg)';
+					},(aDiv[index].row + aDiv[index].column) * 200);
+				})(i);
+		};
+
+		aDiv[aDiv.length - 1].addEventListener('transitionend', function () {
+			//alert(1);
+			bClick = false;
+			current++;
+			for (var i = 0; i < aDiv.length; i++){
+				aDiv[i].style.transition = '';
+				aDiv[i].style.transform = 'perspective(800px) rotateY(0)';
+				aDiv[i].children[1].style.backgroundImage = 'url(img/a' + current%length + '.jpg)';
+				aDiv[i].children[0].style.backgroundImage = 'url(img/a' + (current + 1) % length + '.jpg)';
+			}
+		}, false);
+	};
+	</script>
+</head>
+<body>
+	<div class="box"></div>
+</body>
+</html>

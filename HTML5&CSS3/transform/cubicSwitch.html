@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3dimg</title>
+	<style type="text/css">
+	* {margin: 0; padding: 0; list-style: none;}
+	body {overflow: hidden;}
+	.wrap {width: 200px; margin: 20px auto;}
+	.wrap input {width: 80px; text-align: center;}
+	.list {width: 300px; height: 500px; position: relative; margin: 20px auto;}
+	.list li {width: 100%; height: 100%; background: gold; position: absolute; left: 0; top: 0;
+		font: 300px/500px 'Microsoft yahei'; text-align: center; opacity:0; display: none; transition: 1s all ease;}
+	.list .pre1 {transform:perspective(800px) translateX(-1200px); display:block;}
+	.list .pre {transform:perspective(800px) translateX(-320px) rotateY(50deg); opacity:0.6; display:block;}
+	.list .current {opacity:1; display: block;}
+	.list .next {transform:perspective(800px) translateX(320px) rotateY(-50deg); opacity:0.6; display:block;}
+	.list .next1 {transform:perspective(800px) translateX(1200px); display:block;}
+	</style>
+	<script type="text/javascript">
+	window.onload = function () {
+		var aBtn = document.querySelectorAll('input');
+		var aLi = document.querySelectorAll('li');
+		var arr = [];
+		for (var i = 0; i < aLi.length; i++)
+			arr[i] = aLi[i].className;
+
+		aBtn[0].onclick = function () {
+			arr.push(arr.shift());
+			for (var i = 0; i < arr.length; i++)
+				aLi[i].className = arr[i];
+		};
+
+		aBtn[1].onclick = function () {
+			arr.unshift(arr.pop());
+			for (var i = 0; i < arr.length; i++)
+				aLi[i].className = arr[i];
+		};
+	};
+	</script>
+</head>
+<body>
+	<div class="wrap">
+		<input type="button" value="pre">
+		<input type="button" value="next">
+	</div>
+	<ul class="list">
+		<li class="pre">0</li>
+		<li class="current">1</li>
+		<li class="next">2</li>
+		<li class="next1">3</li>
+		<li>4</li>
+		<li class="pre1">5</li>
+	</ul>
+</body>
+</html>

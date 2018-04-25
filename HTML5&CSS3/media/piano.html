@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>piano</title>
+	<style type="text/css">
+	* { margin: 0; padding: 0; list-style: none;}
+	body {background: #fff;}
+	#piano {width: 800px; height: 200px; margin: 0 auto;}
+	#piano li {width: 98px; height: 100%; border:1px solid purple; float: left;
+		font-size: 100px; line-height: 200px; text-align: center;}
+	#piano li.active {background: #ccc;}
+	</style>
+	<script src="sound.js"></script>
+	<script type="text/javascript">
+	window.onload = function () {
+		var p = document.querySelector('#piano');
+		var a = p.children;
+		var audio = new Audio();
+		var str = '671713733656158334341381117447786717137833656158341771223181766756812323528551713388671722155843213383655321812122538365321812122768676';
+		var timer = 0;
+		for (var i = 0; i < a.length; i++)
+			(function (index) {
+				a[i].onmousedown = function () {
+					this.classList.add('active');
+					audio.src = oggSound['sound' + (49 + index)];
+					audio.play();
+				}
+				a[i].onmouseup = function () {
+					this.classList.remove('active');
+				};
+			})(i);
+
+		document.onkeydown = function (ev) {
+			var audio = new Audio();
+			a[ev.keyCode - 49].classList.add('active');
+			audio.src = oggSound['sound' + ev.keyCode];
+			audio.play();
+		};
+		document.onkeyup = function (ev) {
+			a[ev.keyCode - 49].classList.remove('active');
+		};
+
+		i = 0;
+		timer = setInterval(function () {
+			a[str[i] - 1].onmousedown();
+			(function (index) {
+				setTimeout(function () {
+					a[str[index] - 1].onmouseup();
+				},100);
+			})(i);
+			if (++i === str.length)
+				clearInterval(timer);
+		}, 300);
+	};
+	</script>
+</head>
+<body>
+	<ul id="piano">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+	</ul>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>bomb</title>
+	<style type="text/css">
+	* {margin: 0; padding: 0;}
+	.box {width: 700px; height: 400px; margin: 100px auto; background: url(img/a1.jpg); position: relative;}
+	.box div {float: left; background: url(img/a0.jpg);}
+	</style>
+	<script type="text/javascript">
+	window.onload = function () {
+		var box = document.querySelector('.box');
+		var height = 100, width = 100;
+		var row = box.offsetHeight/height;
+		var column = box.offsetWidth/width;
+		var leftCenter = box.offsetWidth/2;
+		var topCenter = box.offsetHeight/2;
+		var aDiv = box.children;
+		var o = null, bClick = false;
+		var current = 0, length = 3;
+		for (var i = 0; i < row; i++)
+			for (var j = 0; j < column; j++){
+				o = document.createElement('div');
+				o.style.width = width + 'px';
+				o.style.height = height + 'px';
+				o.style.backgroundPosition = -j * width + 'px -' + i * height + 'px';
+				box.appendChild(o);
+				o.translateX = o.offsetLeft - leftCenter;
+				o.translateY = o.offsetTop - topCenter;
+			}
+
+		box.onclick = function () {
+			if (bClick)
+				return;
+			bClick = true;
+			for (var i = 0; i < aDiv.length; i++){
+				aDiv[i].style.transition = '1s all ease';
+				aDiv[i].style.transform = 'perspective(800px) translate(' + aDiv[i].translateX + 'px,' +
+				aDiv[i].translateY + 'px) scale(1.5) rotateZ(' + rand(0,180) +'deg) rotateY(' + rand(0,180)
+				+'deg) rotateX(' + rand(0,180)+'deg)';
+				aDiv[i].style.opacity = 0;
+			}
+		};
+
+		aDiv[0].addEventListener('transitionend', function (ev) {  // 执行两次，因transform和opacity都会触发
+			if (ev.propertyName === 'transform'){
+				bClick = false;
+				box.style.backgroundImage = 'url(img/a' + (++current + 1) % length + '.jpg)';
+				for (var i = 0; i < aDiv.length; i++) {
+					aDiv[i].style.transition = 'none';
+					aDiv[i].style.transform = 'perspective(800px) rotateY(0) rotateX(0) scale(1)';
+					aDiv[i].style.opacity = 1;
+					aDiv[i].style.backgroundImage = 'url(img/a' + current % length + '.jpg)';
+				}
+			}
+		}, false);
+
+		function rand(n, m) {
+			return Math.floor(Math.random()*(m - n + 1) + n);
+		}
+	};
+	</script>
+</head>
+<body>
+	<div class="box"></div>
+</body>
+</html>
